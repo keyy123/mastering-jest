@@ -1,4 +1,4 @@
-const {errFunc}  = - require('./../../error.js');
+const {errFunc}  = require('../../utils/helpers/error.js');
 
 const fn = errFunc
 

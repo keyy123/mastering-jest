@@ -52,3 +52,62 @@ describe('User Constructor', () => {
     })
 
 })
+expect.extend({
+    customMatcher(x, y, z) {
+      return {
+        pass: true,
+        message: () => 'test failed',
+      };
+    },
+});
+  
+it('custom matcher', () => {
+    let x = 1, y = 2, z = 3;
+    expect(x).customMatcher(y, z);
+
+    // Why wouldn't this test pass?
+
+    // expect(x, y).customMatcher(z);
+
+    // Expect can only take in 1 argument so the rest of the arguments from custom matcher method must be passed in the method directly
+})
+
+/* 
+What are error handling matchers?
+
+- .toThrow
+- .rejects
+- .toThrowErrorMatchingSnapshot
+
+
+How to test if a test fails in jest?
+- We use `.assertions` method to tell jest to check how many assertions are called 
+- This lets us make an test that can pass even if the test would normally fail
+```js 
+//test async error via Promise.catch
+it('tests error with promises', () => {
+  expect.assertions(1);
+  return user.getUserName(2).catch(e =>
+    expect(e).toEqual({
+      error: 'User with 2 not found.',
+    }),
+  );
+});
+```
+
+```js
+// async/await to test async errors
+it('tests error with async/await', async () => {
+  expect.assertions(1);
+  try {
+    await user.getUserName(1);
+  } catch (e) {
+    expect(e).toEqual({
+      error: 'User with 1 not found.',
+    });
+  }
+});
+```
+
+recommend that you read the [async examples](https://jestjs.io/docs/tutorial-async#rejects) in jest documentation
+*/

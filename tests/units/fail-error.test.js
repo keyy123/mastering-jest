@@ -5,4 +5,15 @@ describe('errorFunc', () => {
     test.skip('fails', () => {
         expect(errFunc()).toThrow();
     })
+
+    test('should fail - try/catch method', () => {
+        expect.assertions(1);
+        try {
+            errFunc('hi');    
+        } catch (e) {
+            expect(e.message).toEqual('hi');
+        }
+    })
+
+    
 })

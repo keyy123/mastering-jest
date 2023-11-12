@@ -1,4 +1,4 @@
-const {sum, sumv2} = require('../../sum')
+const {sum, sumv2} = require('../../utils/helpers/sum')
 
 describe('sum module', () => {
     test('adds 1 + 2 to equal 3', () => {
